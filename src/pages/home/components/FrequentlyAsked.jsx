@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
+import GetStartedButton from "./GetStartedButton";
+
 import Input from "./Input";
 
 const FrequentlyAsked = () => {
@@ -79,7 +81,10 @@ const FrequentlyAsked = () => {
                         Ready to watch? Enter your email to create or restart
                         your membership.
                     </p>
-                    <Input />
+                    <div className="flex flex-col md:flex-row gap-3 items-stretch">
+                        <Input label="Email address" />
+                        <GetStartedButton />
+                    </div>
                 </div>
             </div>
         </div>

@@ -14,11 +14,28 @@ const Header = () => {
             <div className="min-w-[min-content] flex items-center relative h-[35px] ml-auto px-4 text-white rounded-md font-bold border border-white overflow-hidden whitespace-nowrap">
                 <div className="z-0 absolute inset-0 bg-black opacity-50 whitespace-nowrap"></div>
                 <div className="z-10 relative flex items-center gap-2 whitespace-nowrap">
-                    <IoLanguageOutline /> English <IoMdArrowDropdown />
+                    <IoLanguageOutline />{" "}
+                    <select className="relative bg-transparent" name="language">
+                        <option
+                            className=""
+                            name="language"
+                            value="english"
+                        >
+                            English
+                        </option>
+                        <option name="language" value="italian">
+                            Italiano
+                        </option>
+                    </select>{" "}
+                    <IoMdArrowDropdown />
                 </div>
             </div>
 
-            <button className="button ml-4 h-[35px] whitespace-nowrap">Sign in </button>
+            <div></div>
+
+            <button className="button ml-4 h-[35px] whitespace-nowrap">
+                Sign in{" "}
+            </button>
         </div>
     );
 };

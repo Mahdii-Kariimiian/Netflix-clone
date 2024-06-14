@@ -1,4 +1,5 @@
 import background from "../../../assets/hero-background.jpg";
+import GetStartedButton from "./GetStartedButton";
 
 import Input from "./Input"
 
@@ -8,7 +9,6 @@ const Hero = () => {
             className="h-[100vh] flex flex-col items-center justify-center text-white gap-7 bg-center p-10 bg-no-repeat"
             style={{
                 backgroundImage: `url(${background})`,
-                backgroundSize: "120%",
                 backgroundSize: "cover",
             }}
         >
@@ -23,7 +23,10 @@ const Hero = () => {
                 membership.
             </p>
             <div className="bg-custom-gradient absolute inset-0 z-0 "></div>
-            <Input />
+            <div className="flex flex-col md:flex-row gap-3 items-stretch">
+                <Input label="Email address" />
+                <GetStartedButton />
+            </div>
         </div>
     );
 };
