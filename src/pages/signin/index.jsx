@@ -6,7 +6,7 @@ const index = () => {
     return (
         <div>
             <div
-                className="h-[100vh] flex flex-col items-center justify-start text-center text-white bg-center p-10 bg-no-repeat relative"
+                className="h-[100dvh] flex flex-col items-center justify-start text-center text-white bg-center p-10 bg-no-repeat relative"
                 style={{
                     backgroundImage: `url(${background})`,
                     backgroundSize: "cover",

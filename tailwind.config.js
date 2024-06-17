@@ -3,9 +3,13 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            fontFamily: {
+                "roboto-bold" : ['Roboto-bold'],
+                "roboto-regular" : ['Roboto-regular'],
+            },
             backgroundImage: {
                 "custom-gradient":
-                    "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.8) 100%)",
+                    "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0 , 0 , 0 , 0.2) 20%, rgba(0, 0, 0, 0.8) 80%)",
             },
         },
     },

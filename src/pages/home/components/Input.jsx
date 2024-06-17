@@ -1,42 +1,35 @@
 import { useState, useRef } from "react";
-
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { RiArrowRightSLine } from "react-icons/ri";
+import EmailValidation from "../../../utils/EmailValidation";
 import UseClickOutside from "../../../hooks/useClickOutside";
-import GetStartedButton from "./GetStartedButton";
 
 const Input = ({ label }) => {
-    const [isFocused, setIsFocused] = useState(false);
     const [email, setEmail] = useState("");
+    const [isFocused, setIsFocused] = useState(false);
     const [isValid, setIsValid] = useState(false);
     const [isEmail, setIsEmail] = useState(false);
     const inputRef = useRef(null);
 
-    const emailPattern = new RegExp(
-        "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
-    );
-
     const isClickOutside = UseClickOutside(() => {
         setIsFocused(false);
-        inputRef.current.classList.remove("border-white");
-        inputRef.current.classList.remove("border-red-700");
+        setIsValid(false);
+        setIsEmail(false);
     });
 
     const handleEmailChange = (e) => {
         e.preventDefault();
         const trimmedValue = email.trim();
-        if (emailPattern.test(trimmedValue) && trimmedValue) {
+
+        if (EmailValidation(trimmedValue) && trimmedValue) {
             setIsValid(false);
             setIsEmail(false);
-            inputRef.current.classList.add("border-white");
-            inputRef.current.classList.remove("border-red-700");
         } else if (!trimmedValue) {
             setIsEmail(true);
             setIsValid(false);
-            inputRef.current.classList.add("border-red-700");
         } else {
             setIsValid(true);
             setIsEmail(false);
-            inputRef.current.classList.add("border-red-700");
         }
     };
 
@@ -46,13 +39,18 @@ const Input = ({ label }) => {
                 setIsFocused(true);
                 inputRef.current.focus();
             }}
-            ref={isClickOutside}
+            className="max-md:w-full"
         >
-            <div
+            <form
                 onSubmit={handleEmailChange}
-                className="w-full relative flex gap-3 flex-col md:items-start justify-between md:flex-row md:max-w-[700px] z-10"
+                className="w-full relative flex gap-3 flex-col md:items-stretch justify-between md:flex-row md:max-w-[700px] z-10"
             >
-                <div className="p-5 border flex-1 border-white rounded-md bg-black opacity-50 mb-5 h-[65px] min-w-[235px] lg:min-w-[365px] cursor-text">
+                <div
+                    ref={isClickOutside}
+                    className={`p-5 pb-2 flex-1 border rounded-md bg-black opacity-50 min-w-[235px] lg:min-w-[365px] cursor-text ${
+                        isEmail || isValid ? "border-red-700" : "border-white"
+                    }`}
+                >
                     <label
                         onClick={() => {
                             setIsFocused(true);
@@ -60,11 +58,12 @@ const Input = ({ label }) => {
                         className={`${
                             isFocused
                                 ? "cursor-text transition-all absolute text-sm top-1 left-5"
-                                : "cursor-text transition-all text-lg absolute top-5 left-5 "
+                                : "cursor-text transition-all text-lg absolute top-[17px] md:top-5 left-5"
                         }`}
                     >
                         {label}
                     </label>
+
                     <input
                         ref={inputRef}
                         value={email}
@@ -73,28 +72,25 @@ const Input = ({ label }) => {
                         }}
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
-                        className="w-full bg-transparent mt-3 border-none focus:outline-none"
-                        type="name"
+                        className="w-full bg-transparent mt-2 border-none focus:outline-none"
+                        type="text"
                     />
                 </div>
+
                 <p
-                    className={`absolute flex gap-2 items-end ${
-                        isEmail ? " block" : "hidden"
-                    } top-[70px] left-2 text-red-700 font-bold`}
+                    className={`absolute text-sm pt-1 flex gap-2 items-end ${
+                        isEmail || isValid ? "block" : "hidden"
+                    } top-[70px] left-2 text-red-600 font-bold`}
                 >
-                    <IoMdCloseCircleOutline className="text-xl" /> Email is
-                    required
+                    <IoMdCloseCircleOutline className="text-xl" />
+                    {isEmail && "Email is required"}
+                    {isValid && "Please insert a valid Email address"}
                 </p>
-                <p
-                    className={`absolute flex gap-2 items-end ${
-                        isValid ? " block" : "hidden"
-                    } top-[70px] left-2 text-red-700 font-bold`}
-                >
-                    <IoMdCloseCircleOutline className="text-xl" /> Please insert
-                    a valid Email address
-                </p>
-                
-            </div>
+
+                <button className="max-md:self-center button md:text-xl md:px-6 flex gap-1 md:gap-3 items-center py-2 md:py-4 md:w-[205px]">
+                    Get Started <RiArrowRightSLine className="text-4xl" />
+                </button>
+            </form>
         </div>
     );
 };
