@@ -80,7 +80,6 @@ const Index = () => {
                                 className={`w-full mt-2 p-2 rounded bg-transparent focus:outline-none`}
                                 type="email"
                                 id="email"
-                                placeholder="Email or mobile number"
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -123,7 +122,6 @@ const Index = () => {
                                 className={`w-full mt-2 p-2 rounded bg-transparent focus:outline-none`}
                                 type="password"
                                 id="password"
-                                placeholder="Password"
                                 {...register("password", {
                                     required: {
                                         value: true,
