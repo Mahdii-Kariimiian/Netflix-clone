@@ -3,7 +3,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import EmailValidation from "../../utils/EmailValidation";
 import UseClickOutside from "../../hooks/useClickOutside";
 
-const Input = ({ label }) => {
+const Input = ({ label, register, error, name, pattern, errorPattern }) => {
     const [email, setEmail] = useState("");
     const [isFocused, setIsFocused] = useState(false);
     const [isValid, setIsValid] = useState(false);
@@ -24,9 +24,7 @@ const Input = ({ label }) => {
             }}
             className="max-md:w-full"
         >
-            <div
-                className="w-full relative flex gap-3 flex-col md:items-stretch justify-between md:flex-row md:max-w-[700px] z-10"
-            >
+            <div className="w-full relative flex gap-3 flex-col md:items-stretch justify-between md:flex-row md:max-w-[700px] z-10">
                 <div
                     ref={isClickOutside}
                     className={`p-5 pb-2 flex-1 border rounded-md bg-black opacity-50 min-w-[235px]  cursor-text ${
@@ -47,15 +45,22 @@ const Input = ({ label }) => {
                     </label>
 
                     <input
-                        ref={inputRef}
-                        value={email}
+                        // ref={inputRef}
+                        // value={email}
+                        // onFocus={() => setIsFocused(true)}
+                        // onBlur={() => setIsFocused(false)}
                         onChange={(e) => {
                             setEmail(e.target.value);
                         }}
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
                         className="w-full bg-transparent mt-2 border-none focus:outline-none"
                         type="text"
+                        {...register(name, {
+                            required: error,
+                            pattern: {
+                                value: pattern,
+                                message: errorPattern,
+                            },
+                        })}
                     />
                 </div>
 
