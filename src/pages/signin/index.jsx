@@ -1,68 +1,68 @@
+// index.jsx
+import { useState } from "react";
 import background from "../../assets/hero-background.jpg";
 import Footer from "../../components/Footer";
-import Input from "../home/components/Input";
+import InputWithoutButton from "../../components/commons/InputWithoutButton";
+import NetflixLogo from "../../assets/netflix-logo.png";
+import CheckBox from "../../components/cubes/CheckBox";
 
-const index = () => {
+const Index = () => {
+    const [isChecked, setIsChecked] = useState(false);
     return (
         <div>
             <div
-                className="h-[100dvh] flex flex-col items-center justify-start text-center text-white bg-center p-10 bg-no-repeat relative"
+                className="flex flex-col items-center justify-start text-center text-white bg-center py-0 p-5 bg-no-repeat relative"
                 style={{
                     backgroundImage: `url(${background})`,
                     backgroundSize: "cover",
                 }}
             >
-                
-                
-                <div className="max-w-[450px] bg-black bg-opacity-80 backdrop-filter backdrop-opacity-70 z-10 p-14 rounded-md">
-                    <h1 className="text-4xl mb-4">Sign in</h1>
-                    <form className="relative flex flex-col gap-4">
-                        {/* <label
-                            className="absolute top-[4%] left-[4%]"
-                            htmlFor="email"
-                        >
-                            Email or mobile number
-                        </label> */}
-                        <Input label="Email or mobile number" />
-                        {/* <input
-                            type="text"
-                            name="email"
-                            className="p-2 h-[50px] border border-[#707070] rounded backdrop-filter backdrop-opacity-10 bg-opacity-10 bg-white text-white"
-                        /> */}
-                        {/* <label
-                            className="absolute top-[24%] left-[4%]"
-                            htmlFor="password"
-                        >
-                            Password
-                        </label> */}
-                        <Input label="Password" />
-                        {/* <input
-                            type="password"
-                            name="password"
-                            className="p-2 h-[50px] border border-[#707070] rounded backdrop-filter backdrop-opacity-10 bg-opacity-10 bg-white text-white"
-                        /> */}
-                        <button className="button h-[50px] text-white p-2 rounded mt-4">
+
+                <div className="w-full z-10 self-start lg:px-[175px] py-5">
+                    <img
+                        className=" md:w-[150px] w-[100px]"
+                        src={NetflixLogo}
+                        alt="Logo"
+                    />
+                </div>
+
+                <div className="max-w-[450px] bg-black bg-opacity-70 backdrop-filter backdrop-opacity-70 z-10 p-14 rounded-t-md rounded-r-md flex flex-col">
+
+                    <h1 className="font-roboto-bold text-4xl text-start mb-4">
+                        Sign in
+                    </h1>
+
+                    <form className="relative flex flex-col  gap-3" >
+                        <InputWithoutButton label="Email or mobile number" />
+                        <InputWithoutButton label="Password" />
+
+                        <button className="button transition-color ease-in duration-200 hover:bg-red-700 h-[50px] text-white p-2 rounded ">
                             Sign in
                         </button>
-                        <p className="my-2">OR</p>
-                        <button className="h-[50px] backdrop-filter backdrop-opacity-10 bg-opacity-25 bg-white text-white p-2 rounded">
+
+                        <p>OR</p>
+
+                        <button className="transition-color ease-in duration-200 hover:backdrop-opacity-50 hover:backdrop-filter h-[50px] backdrop-filter backdrop-opacity-10 bg-opacity-25 hover:bg-opacity-20 bg-white text-white p-2 rounded">
                             Use a Sign-in Code
                         </button>
+
                     </form>
-                    <p className="mt-4">Forgot password?</p>
-                    <div className="text-start">
-                        <div className="flex items-center mt-4">
-                            <input
-                                name="remember"
-                                type="checkbox"
-                                className="mr-2"
-                            />
-                            <label htmlFor="remember">Remember me</label>
-                        </div>
+
+                    <p className="mt-4 font-bold cursor-pointer hover:underline hover:text-gray-500 self-center">Forgot password?</p>
+
+                    <div className="flex flex-col items-start text-start mt-2 ">
+                        <CheckBox
+                            isChecked={isChecked}
+                            setIsChecked={setIsChecked}
+                        >
+                            Remember me
+                        </CheckBox>
+
                         <p className="mt-4">
                             New to Netflix?{" "}
                             <span className="cursor-pointer">Sign up now</span>
                         </p>
+
                         <p className="mt-4 text-sm">
                             This page is protected by Google reCAPTCHA to ensure
                             you're not a bot.{" "}
@@ -72,6 +72,7 @@ const index = () => {
                         </p>
                     </div>
                 </div>
+
                 <div className="bg-black opacity-50 absolute inset-0 z-0"></div>
             </div>
             <Footer />
@@ -79,4 +80,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default Index;

@@ -3,7 +3,7 @@ import MenuLinks from "../components/cubes/MenuLinks";
 
 const Footer = () => {
     return (
-        <footer className="bg-black text-gray-300 p-8 border-t-8 border-[#3A3A3A] pt-16">
+        <footer className="bg-black text-gray-300 p-8 pt-16">
             <div className="max-w-screen-xl mx-auto">
                 <a href="#" className=" text-xl hover:underline">
                     Questions? Contact us.

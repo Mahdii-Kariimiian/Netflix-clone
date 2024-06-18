@@ -53,7 +53,7 @@ const FrequentlyAsked = () => {
     // ];
 
     return (
-        <div className="bg-black p-10 text-white border-t-8 border-[#3A3A3A] pt-[70px]">
+        <div className="bg-black p-10 text-white border-y-8 border-[#3A3A3A] pt-[70px]">
             <div className="text-start max-w-screen-lg mx-auto">
                 <h2 className="font-roboto-bold text-3xl md:text-5xl text-center font-bold mb-8">
                     Frequently Asked Questions
