@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import NetflixLogo from "../assets/netflix-logo.png";
+import NetflixLogo from "../assets/images/netflix-logo.png";
 import { IoLanguageOutline } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import DropDown from "./commons/DropDown";
@@ -20,11 +20,13 @@ const Header = () => {
 
     return (
         <div className="absolute top-0 w-full z-10 flex p-5 items-center lg:px-[175px] flex-wrap gap-1">
-            <img
-                className="md:w-[150px] w-[100px]"
-                src={NetflixLogo}
-                alt="Logo"
-            />
+            <Link to="/">
+                <img
+                    className="md:w-[150px] w-[100px]"
+                    src={NetflixLogo}
+                    alt="Logo"
+                />
+            </Link>
 
             <div className="flex ml-auto gap-2">
                 <div

@@ -9,7 +9,7 @@ export default {
             },
             backgroundImage: {
                 "custom-gradient":
-                    "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0 , 0 , 0 , 0.2) 20%, rgba(0, 0, 0, 0.8) 80%)",
+                    "linear-gradient(to top, rgba(0, 0, 0, 0.8) 10%, rgba(0 , 0 , 0 , 0.2) 50%, rgba(0, 0, 0, 0.8) 90%)",
             },
         },
     },

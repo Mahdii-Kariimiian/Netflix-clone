@@ -1,4 +1,4 @@
-import background from "../../../assets/hero-background.jpg";
+import background from "../../../assets/images/hero-background.jpg";
 
 import Input from "./Input";
 

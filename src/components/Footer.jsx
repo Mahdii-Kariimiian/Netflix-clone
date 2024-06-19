@@ -1,7 +1,19 @@
 import { IoLanguageOutline } from "react-icons/io5";
 import MenuLinks from "../components/cubes/MenuLinks";
+import DropDown from "./commons/DropDown";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { useState } from "react";
+import UseClickOutside from "../hooks/useClickOutside";
 
 const Footer = () => {
+    const languages = ["English", "Italiano"];
+    const [selectedLanguage, setSelectedLanguage] = useState("English");
+    const [isDropDown, setIsDropDown] = useState(false);
+
+    // function passed to UseClickOutside Hook
+    const isClickOut = UseClickOutside(() => {
+        setIsDropDown(false);
+    });
     return (
         <footer className="bg-black text-gray-300 p-8 pt-16">
             <div className="max-w-screen-xl mx-auto">
@@ -41,16 +53,29 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="mt-8 text-center">
-                    <button className="bg-transparent border border-gray-300 text-gray-300 py-2 px-4 rounded flex items-center justify-center">
+                <div
+                    ref={isClickOut}
+                    onClick={() => setIsDropDown(!isDropDown)}
+                    className=" mt-6 text-center"
+                >
+                    <button className="relative bg-transparent border border-gray-300 text-gray-300 py-2 px-4 rounded flex items-center justify-center">
                         <span className="mr-2">
                             <IoLanguageOutline />
                         </span>
-                        English
+                        {selectedLanguage}
+                        <div className="absolute w-full top-2">
+                            {isDropDown && (
+                                <DropDown
+                                    languages={languages}
+                                    setSelectedLanguage={setSelectedLanguage}
+                                />
+                            )}
+                        </div>
+                        <IoMdArrowDropdown />
                     </button>
                 </div>
 
-                <div className="mt-4 text-sm">Netflix Italy</div>
+                <div className="mt-10 mb-2 text-sm">Netflix Italy</div>
             </div>
         </footer>
     );

@@ -1,81 +1,39 @@
-import { useState, useRef } from "react";
-import { IoMdCloseCircleOutline } from "react-icons/io";
-import EmailValidation from "../../utils/EmailValidation";
-import UseClickOutside from "../../hooks/useClickOutside";
+import { forwardRef } from "react";
 
-const Input = ({ label, register, error, name, pattern, errorPattern }) => {
-    const [email, setEmail] = useState("");
-    const [isFocused, setIsFocused] = useState(false);
-    const [isValid, setIsValid] = useState(false);
-    const [isEmail, setIsEmail] = useState(false);
-    const inputRef = useRef(null);
-
-    const isClickOutside = UseClickOutside(() => {
-        setIsFocused(false);
-        setIsValid(false);
-        setIsEmail(false);
-    });
-
+const InputWithoutButton = forwardRef((props, ref) => {
+    const { form, name, register, errors, isState, setIsState, children , labelText} =
+        props;
     return (
-        <div
-            onClick={() => {
-                setIsFocused(true);
-                inputRef.current.focus();
-            }}
-            className="max-md:w-full"
-        >
-            <div className="w-full relative flex gap-3 flex-col md:items-stretch justify-between md:flex-row md:max-w-[700px] z-10">
-                <div
-                    ref={isClickOutside}
-                    className={`p-5 pb-2 flex-1 border rounded-md bg-black opacity-50 min-w-[235px]  cursor-text ${
-                        isEmail || isValid ? "border-red-700" : "border-white"
+        <div >
+            <div
+                ref={ref}
+                className={`relative p-2 flex-1 border rounded-md bg-black opacity-50 min-w-[235px] cursor-text ${
+                    errors[name] ? "border-red-700" : "border-white"
+                }`}
+                onClick={() => setIsState(true)}
+            >
+                <label
+                    className={`${
+                        isState || form.watch(name)
+                            ? "cursor-text transition-all absolute text-sm top-2 left-5"
+                            : "cursor-text transition-all text-lg absolute top-[17px] md:top-[13px] left-5"
                     }`}
                 >
-                    <label
-                        onClick={() => {
-                            setIsFocused(true);
-                        }}
-                        className={`${
-                            isFocused
-                                ? "cursor-text transition-all absolute text-sm top-1 left-5"
-                                : "cursor-text transition-all text-lg absolute top-[17px] md:top-5 left-5"
-                        }`}
-                    >
-                        {label}
-                    </label>
-
-                    <input
-                        // ref={inputRef}
-                        // value={email}
-                        // onFocus={() => setIsFocused(true)}
-                        // onBlur={() => setIsFocused(false)}
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                        className="w-full bg-transparent mt-2 border-none focus:outline-none"
-                        type="text"
-                        {...register(name, {
-                            required: error,
-                            pattern: {
-                                value: pattern,
-                                message: errorPattern,
-                            },
-                        })}
-                    />
-                </div>
-
-                <p
-                    className={`absolute text-sm pt-1 flex gap-2 items-end ${
-                        isEmail || isValid ? "block" : "hidden"
-                    } top-[70px] left-2 text-red-600 font-bold`}
-                >
-                    <IoMdCloseCircleOutline className="text-xl" />
-                    {isEmail && "Email is required"}
-                    {isValid && "Please insert a valid Email address"}
-                </p>
+                    {labelText}
+                </label>
+                <input
+                    className={`w-full mt-2 p-2 pb-0  rounded bg-transparent focus:outline-none`}
+                    type={name}
+                    id={name}
+                    {...register(name, children)}
+                />
             </div>
+
+            <p className="text-red-500 text-sm text-start">
+                {errors[name]?.message}
+            </p>
         </div>
     );
-};
+});
 
-export default Input;
+export default InputWithoutButton;

@@ -5,7 +5,6 @@ import { ImCross } from "react-icons/im";
 const Collapse = ({ qas , children }) => {
     //drop down open or close
     const [openQuestionId, setOpenQuestionId] = useState(null);
-    console.log(children)
 
     const handleClick = (id) => {
         setOpenQuestionId(openQuestionId === id ? null : id);
@@ -29,7 +28,7 @@ const Collapse = ({ qas , children }) => {
                                 )}
                             </div>
                             {isOpen && (
-                                <p className="p-4 text-2xl bg-[#3A3A3A]">
+                                <p className="transition-all p-4 text-2xl bg-[#3A3A3A]">
                                     {question.body}
                                 </p>
                             )}

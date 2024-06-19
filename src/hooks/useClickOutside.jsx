@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const UseClickOutside = (handler) => {
     const clickRef = useRef(null);
@@ -15,7 +15,7 @@ const UseClickOutside = (handler) => {
         };
     }, [handler]);
 
-    return clickRef
+    return clickRef;
 };
 
 export default UseClickOutside;
